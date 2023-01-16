@@ -10,8 +10,9 @@ export function TasksForm(){
                  description: ""
               }}
              
-             onSubmit={async(values)=>{
+             onSubmit={async(values, actions)=>{
                 const result = await createTasksRequest(values)
+                actions.resetForm()
                 console.log(result)
              }}
         	>

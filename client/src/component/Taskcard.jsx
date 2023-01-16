@@ -1,13 +1,14 @@
 import React from 'react'
 
-
-function TaskCard(){
+export function TaskCard({task}){
 	return(
-        <div key={datos.id}>
-                   <h1>{datos.title}</h1>
-                   <h1>{datos.description}</h1>
-               </div>   
-	  )
+      <div>
+       <h2>{task.title}</h2>
+       <p>{task.description}</p>
+       <span>{task.done == 1 ? "✅️" : "❌"}</span>
+       <span>{task.createAt}</span>
+       <button>Delete</button>
+       <button>Edit</button>
+       </div>
+     )
 }
-
-export default TaskCard
