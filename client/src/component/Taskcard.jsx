@@ -1,13 +1,17 @@
 import React from 'react'
+import {useTasks} from '../context/TasksProvider'
 
 export function TaskCard({task}){
+
+const {deleteTask} = useTasks()
+
 	return(
       <div>
        <h2>{task.title}</h2>
        <p>{task.description}</p>
        <span>{task.done == 1 ? "✅️" : "❌"}</span>
        <span>{task.createAt}</span>
-       <button>Delete</button>
+       <button onClick={() => deleteTask(task.id)}>Delete</button>
        <button>Edit</button>
        </div>
      )

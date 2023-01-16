@@ -1,7 +1,12 @@
 import {Form, Formik} from 'formik'
 import {createTasksRequest} from '../api/tasks.api'
+import {useTasks} from '../context/TasksProvider'
+
 
 export function TasksForm(){
+
+const {text} = useTasks()
+
 	return(
         <div>
         	<Formik
@@ -16,14 +21,14 @@ export function TasksForm(){
                 console.log(result)
              }}
         	>
-        	{({handleChange, handleSubmit})=>(
+        	{({handleChange, handleSubmit, values})=>(
               <Form onSubmit={handleSubmit}>
         			<label>title</label>
         			<input type="text" name="title" placeholder="write a title" 
-        			 onChange={handleChange}/>
+        			 onChange={handleChange} value={values.title}/>
         			<label>description</label>
         			<textarea name="description" rows="3" placeholder="write a description"
-        			 onChange={handleChange}></textarea>
+        			 onChange={handleChange} value={values.description}></textarea>
         			<button type="submit">Save</button>
         		</Form>
         	  )}

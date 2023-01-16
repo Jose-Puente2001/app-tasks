@@ -1,18 +1,10 @@
-import React, { useState, useEffect } from 'react'
-import {getTasksRequest} from '../api/tasks.api'
+import React, {useEffect} from 'react'
 import {TaskCard} from '../component/taskcard'
+import {useTasks} from '../context/TasksProvider'
 
 function TasksPage(){
 
-const [tasks, setTasks] = useState([])
-
-async function loadTasks(){
-
- const result =  await getTasksRequest()
- const response = result.data
- setTasks(response)
-}
-
+const {tasks, loadTasks} = useTasks()
 
 useEffect(()=>{
 
@@ -20,14 +12,16 @@ loadTasks()
   
 },[])
 
+const renderMain = () => {
+
+  if (tasks.length == 0) return <h1>No tasks yet</h1>
+  return tasks.map(task => <TaskCard task={task} key={task.id}/>);
+}
+
 	return(
 		<div>
        <h1>Tasks</h1>
-       {
-           tasks.map(task =>(
-                <TaskCard task={task} key={task.id}/>
-           ))
-       	}
+        {renderMain()}
        </div>
 	)
 }
