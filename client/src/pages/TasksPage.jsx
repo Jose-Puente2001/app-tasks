@@ -20,8 +20,10 @@ const renderMain = () => {
 
 	return(
 		<div>
-       <h1>Tasks</h1>
-        {renderMain()}
+       <h1 className="text-5xl text-white fond-bold text-center">Tasks</h1>
+       <div className="grid grid-cols-3 gap-2 mt-4">
+       	{renderMain()}
+       </div>
        </div>
 	)
 }
